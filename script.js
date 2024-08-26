@@ -30,27 +30,27 @@ const getRollbackMessage = function (price) {
     }
 }
 
-const getTitle = function (t) {
-    let correctTitle = t.toLowerCase().trim().split('').map((char, index) =>
-        index === 0 ? char.toUpperCase() : char).join('');
-    return correctTitle
+const getTitle = function () {
+    return title.trim()[0].toUpperCase() + title.trim().substring(1).toLowerCase();
 }
 
-function getFullPrice(price1, callback) {
-    return price1 + callback(servicePrice1, servicePrice2);
+const getAllServicePrices = function () {
+    return servicePrice1 + servicePrice2;
 }
 
-const getServicePercentPrices = function (price1, price2) {
-    return price1 - price1 * price2 / 100;
+const getFullPrice = function () {
+    return screenPrice + allServicePrices;
 }
 
-fullPrice = getFullPrice(screenPrice, function (price1, price2) {
-    return price1 + price2;
-});
+const getServicePercentPrices = function () {
+    return fullPrice - fullPrice * rollback / 100;
+}
 
-servicePercentPrice = getServicePercentPrices(fullPrice, rollback)
+allServicePrices = getAllServicePrices();
+fullPrice = getFullPrice();
+servicePercentPrice = getServicePercentPrices();
 
-console.log(showTypeOf(getTitle(title)));
+console.log(showTypeOf(getTitle()));
 console.log(showTypeOf(fullPrice));
 console.log(showTypeOf(adaptive));
 

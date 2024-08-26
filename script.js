@@ -29,7 +29,7 @@ switch (true) {
         console.log("Скидка не предусмотрена");
         break
     case fullPrice < 0:
-        console.log("Что то пошло не так");
+        console.log("Что-то пошло не так");
         break
 }
 

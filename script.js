@@ -27,5 +27,14 @@ switch (true) {
         break
 }
 
-console.log(fullPrice);
-console.log(servicePercentPrice);
+console.log(typeof title);
+console.log(typeof fullPrice);
+console.log(typeof adaptive);
+
+console.log(screens.length);
+
+console.log(screenPrice + "$");
+console.log(fullPrice + "$");
+console.log(servicePercentPrice + "$");
+
+console.log(screens.toLowerCase().split(", "));

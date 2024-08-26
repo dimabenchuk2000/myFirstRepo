@@ -1,3 +1,5 @@
+'use strict';
+
 let rollback = 50;
 
 let title = prompt("Как называется ваш проект?");
@@ -34,20 +36,18 @@ const getTitle = function (t) {
     return correctTitle
 }
 
-const getAllServicePrices = function (price1, price2) {
-    return price1 + price2;
-}
-
-function getFullPrice(price1, price2) {
-    return price1 + price2;
+function getFullPrice(price1, callback) {
+    return price1 + callback(servicePrice1, servicePrice2);
 }
 
 const getServicePercentPrices = function (price1, price2) {
     return price1 - price1 * price2 / 100;
 }
 
-allServicePrices = getAllServicePrices(servicePrice1, servicePrice2);
-fullPrice = getFullPrice(screenPrice, allServicePrices);
+fullPrice = getFullPrice(screenPrice, function (price1, price2) {
+    return price1 + price2;
+});
+
 servicePercentPrice = getServicePercentPrices(fullPrice, rollback)
 
 console.log(showTypeOf(getTitle(title)));

@@ -1,5 +1,15 @@
 let lang = prompt("Укажите язык", "ru/en");
 
+let Arr = [];
+Arr.ru = ['пн', 'вт', 'ср', 'чт', 'пт', 'сб', 'вс'];
+Arr.en = ['mn', 'ts', 'wd', 'th', 'fr', 'st', 'sn'];
+console.log(Arr[lang.toLowerCase()]);
+
+let namePerson = 'Артем';
+console.log(
+    (namePerson == 'Артем') ? 'Директор' :
+        (namePerson === 'Александр') ? 'Преподователь' : 'Студент');
+
 if (lang.toLowerCase() === "ru") {
     console.log("Понедельник, вторник, среда, пятница, суббота, воскресенье");
 } else if (lang.toLowerCase() === "en") {
@@ -8,7 +18,7 @@ if (lang.toLowerCase() === "ru") {
     console.log("Неверно указан язык");
 }
 
-switch (lang) {
+switch (lang.toLowerCase()) {
     case 'ru':
         console.log('пн', 'вт', 'ср', 'чт', 'пт', 'сб', 'вс');
         break;
@@ -18,13 +28,3 @@ switch (lang) {
     default:
         console.log("Неверно указан язык");
 };
-
-let Arr = [];
-Arr.ru = ['пн', 'вт', 'ср', 'чт', 'пт', 'сб', 'вс'];
-Arr.en = ['mn', 'ts', 'wd', 'th', 'fr', 'st', 'sn'];
-console.log(Arr[lang]);
-
-let namePerson = 'Артем';
-console.log(
-    (namePerson == 'Артем') ? 'Директор' :
-        (namePerson === 'Александр') ? 'Преподователь' : 'Студент');

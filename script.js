@@ -20,13 +20,46 @@ const asking = function () {
     title = prompt("Как называется ваш проект?", "Верстка по кайфу");
     screens = prompt("Как типы экранов нужно разработать?", "Простые, Сложные, Интерактивные");
 
-    screenPrice = prompt("Сколько будет стоить данная работа?", 12000);
-
-    while (!isNumber(screenPrice)) {
+    do {
         screenPrice = prompt("Сколько будет стоить данная работа?", 12000);
-    }
+    } while (!isNumber(screenPrice))
 
     adaptive = confirm("Нужен ли адаптив на сайте?");
+}
+
+const getTitle = function () {
+    return title.trim()[0].toUpperCase() + title.trim().substring(1).toLowerCase();
+}
+
+const getAllServicePrices = function () {
+    let sum1 = 0;
+    let sum2 = 0;
+
+    for (let i = 0; i < 2; i++) {
+
+        if (i === 0) {
+            service1 = prompt("Какой дополнительный тип услуги нужен?");
+            do {
+                sum1 = prompt("Сколько это будет стоить?", 1000);
+            } while (!isNumber(sum1))
+        } else if (i === 1) {
+            service2 = prompt("Какой дополнительный тип услуги нужен?");
+            do {
+                sum2 = prompt("Сколько это будет стоить?", 1000);
+            } while (!isNumber(sum2))
+        }
+
+    }
+
+    return +sum1 + +sum2;
+}
+
+const getFullPrice = function () {
+    return +screenPrice + allServicePrices;
+}
+
+const getServicePercentPrices = function () {
+    return fullPrice - fullPrice * rollback / 100;
 }
 
 const showTypeOf = function (variable) {
@@ -44,35 +77,6 @@ const getRollbackMessage = function (price) {
         case price < 0:
             return "Что-то пошло не так";
     }
-}
-
-const getTitle = function () {
-    return title.trim()[0].toUpperCase() + title.trim().substring(1).toLowerCase();
-}
-
-const getAllServicePrices = function () {
-    let sum = 0;
-
-    for (let i = 0; i < 2; i++) {
-
-        if (i === 0) {
-            service1 = prompt("Какой дополнительный тип услуги нужен?");
-        } else if (i === 1) {
-            service2 = prompt("Какой дополнительный тип услуги нужен?");
-        }
-
-        sum += +prompt("Сколько это будет стоить?", 1000);
-    }
-
-    return sum;
-}
-
-const getFullPrice = function () {
-    return +screenPrice + allServicePrices;
-}
-
-const getServicePercentPrices = function () {
-    return fullPrice - fullPrice * rollback / 100;
 }
 
 asking();

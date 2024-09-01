@@ -13,10 +13,11 @@ const appData = {
     rollback: 10,
     start: function () {
         this.asking();
-        this.allServicePrices = this.getAllServicePrices();
-        this.fullPrice = this.getFullPrice();
-        this.servicePercentPrice = this.getServicePercentPrices();
-        this.title = this.getTitle();
+        this.getAllServicePrices();
+        this.getFullPrice();
+        this.getServicePercentPrices();
+        this.getTitle();
+
         this.logger();
     },
     isNumber: function (num) {
@@ -53,16 +54,16 @@ const appData = {
 
         }
 
-        return sum1 + sum2;
+        this.allServicePrices = sum1 + sum2;
     },
     getFullPrice: function () {
-        return this.screenPrice + this.allServicePrices;
+        this.fullPrice = this.screenPrice + this.allServicePrices;
     },
     getServicePercentPrices: function () {
-        return this.fullPrice - this.fullPrice * (this.rollback / 100);
+        this.servicePercentPrice = this.fullPrice - this.fullPrice * (this.rollback / 100);
     },
     getTitle: function () {
-        return this.title.trim()[0].toUpperCase() + this.title.trim().substring(1).toLowerCase();
+        this.title = this.title.trim()[0].toUpperCase() + this.title.trim().substring(1).toLowerCase();
     },
     getRollbackMessage: function (price) {
         switch (true) {

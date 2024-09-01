@@ -2,11 +2,10 @@
 
 const appData = {
     title: '',
-    screens: '',
+    screens: [],
     screenPrice: 0,
     adaptive: true,
-    service1: '',
-    service2: '',
+    services: {},
     allServicePrices: 0,
     fullPrice: 0,
     servicePercentPrice: 0,
@@ -26,35 +25,35 @@ const appData = {
     },
     asking: function () {
         this.title = prompt("Как называется ваш проект?", "Верстка по кайфу");
-        this.screens = prompt("Как типы экранов нужно разработать?", "Простые, Сложные, Интерактивные");
 
-        do {
-            this.screenPrice = +prompt("Сколько будет стоить данная работа?", 12000);
-        } while (!appData.isNumber(this.screenPrice));
+        for (let i = 0; i < 2; i++) {
+            let name = prompt("Как типы экранов нужно разработать?", "Простые, Сложные, Интерактивные (Выбрать один)");
+            let price = 0;
+
+            do {
+                price = +prompt("Сколько будет стоить данная работа?", 10000);
+            } while (!this.isNumber(price))
+
+            this.screens.push({ id: i, name: name, price: price });
+        }
+
+        for (let i = 0; i < 2; i++) {
+            let name = prompt("Какой дополнительный тип услуги нужен?");
+            let price = 0;
+
+            do {
+                price = +prompt("Сколько это будет стоить?", 1000);
+            } while (!this.isNumber(price))
+
+            this.services[name] = price;
+        }
 
         this.adaptive = confirm("Нужен ли адаптив на сайте?");
     },
     getAllServicePrices: function () {
-        let sum1 = 0;
-        let sum2 = 0;
-
-        for (let i = 0; i < 2; i++) {
-
-            if (i === 0) {
-                this.service1 = prompt("Какой дополнительный тип услуги нужен?");
-                do {
-                    sum1 = +prompt("Сколько это будет стоить?", 1000);
-                } while (!this.isNumber(sum1))
-            } else if (i === 1) {
-                this.service2 = prompt("Какой дополнительный тип услуги нужен?");
-                do {
-                    sum2 = +prompt("Сколько это будет стоить?", 1000);
-                } while (!this.isNumber(sum2))
-            }
-
+        for (let key in this.services) {
+            this.allServicePrices += this.services[key];
         }
-
-        this.allServicePrices = sum1 + sum2;
     },
     getFullPrice: function () {
         this.fullPrice = this.screenPrice + this.allServicePrices;
@@ -82,11 +81,8 @@ const appData = {
         console.log(this.fullPrice);
         console.log(this.servicePercentPrice);
         console.log(this.getRollbackMessage(this.fullPrice));
-
-        for (let i in appData) {
-            console.log(i);
-
-        }
+        console.log(this.services);
+        console.log(this.screens);
     }
 }
 

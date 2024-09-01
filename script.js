@@ -12,7 +12,7 @@ const appData = {
     rollback: 10,
     start: function () {
         this.asking();
-        this.getAllServicePrices();
+        this.addPrices();
         this.getFullPrice();
         this.getServicePercentPrices();
         this.getTitle();
@@ -50,7 +50,11 @@ const appData = {
 
         this.adaptive = confirm("Нужен ли адаптив на сайте?");
     },
-    getAllServicePrices: function () {
+    addPrices: function () {
+        for (let screen of this.screens) {
+            this.screenPrice += screen.price;
+        }
+
         for (let key in this.services) {
             this.allServicePrices += this.services[key];
         }

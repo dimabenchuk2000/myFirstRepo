@@ -81,6 +81,11 @@ const appData = {
         console.log(this.fullPrice);
         console.log(this.servicePercentPrice);
         console.log(this.getRollbackMessage(this.fullPrice));
+
+        for (let i in appData) {
+            console.log(i);
+
+        }
     }
 }
 

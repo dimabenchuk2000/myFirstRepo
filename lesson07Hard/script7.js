@@ -18,6 +18,3 @@ for (let i in week) {
 
     document.body.innerHTML += week[i] + "<br>";
 }
-
-console.log(day);
-

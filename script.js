@@ -23,11 +23,19 @@ const appData = {
         if (num === 0) return false;
         return !isNaN(parseFloat(num)) && isFinite(num);
     },
+    isString: function (str) {
+        return !isNaN(str);
+    },
     asking: function () {
-        this.title = prompt("Как называется ваш проект?", "Верстка по кайфу");
+        do {
+            this.title = prompt("Как называется ваш проект?", "Верстка по кайфу");
+        } while (this.isString(this.title))
 
         for (let i = 0; i < 2; i++) {
-            let name = prompt("Как типы экранов нужно разработать?", "Простые, Сложные, Интерактивные (Выбрать один)");
+            let name;
+            do {
+                name = prompt("Как типы экранов нужно разработать?", "Простые, Сложные, Интерактивные (Выбрать один)");
+            } while (this.isString(name))
             let price = 0;
 
             do {
@@ -38,22 +46,25 @@ const appData = {
         }
 
         for (let i = 0; i < 2; i++) {
-            let name = prompt("Какой дополнительный тип услуги нужен?");
+            let name;
+            do {
+                name = prompt("Какой дополнительный тип услуги нужен?");
+            } while (this.isString(name))
             let price = 0;
 
             do {
                 price = +prompt("Сколько это будет стоить?", 1000);
             } while (!this.isNumber(price))
 
-            this.services[name] = price;
+            this.services[name + '_' + i] = price;
         }
 
         this.adaptive = confirm("Нужен ли адаптив на сайте?");
     },
     addPrices: function () {
-        for (let screen of this.screens) {
-            this.screenPrice += screen.price;
-        }
+        this.screenPrice = this.screens.reduce(function (sum, item) {
+            return sum + item.price
+        }, 0)
 
         for (let key in this.services) {
             this.allServicePrices += this.services[key];

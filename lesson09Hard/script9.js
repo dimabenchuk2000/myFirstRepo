@@ -7,8 +7,8 @@ setInterval(() => {
     const dateAndTime = new Date();
     let day = dateAndTime.getDay();
 
-    let textHours = function () {
-        let hours = dateAndTime.getHours();
+    const textHours = function () {
+        const hours = dateAndTime.getHours();
 
         if (hours === 1 || hours === 21) {
             return ' час ';

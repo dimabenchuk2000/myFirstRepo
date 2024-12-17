@@ -1,0 +1,41 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: gray;
+}
+
+.section__input {
+    text-align: center;
+    background-color: blueviolet;
+    padding: 20px 0;
+}
+
+#inputText {
+    width: 97%;
+    height: 30px;
+
+    border-radius: 5px;
+    border: none;
+
+    padding: 0 15px;
+}
+
+.section__p {
+    width: 320px;
+    height: 550px;
+
+    border-radius: 20px;
+
+    background-color: white;
+
+    margin: 25px auto;
+    padding: 10px 15px;
+}
+
+.section__p p {
+    word-break: break-all;
+}
